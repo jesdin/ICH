@@ -5,19 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="C:\Users\iands\Desktop\ICH\ICH\ICH\Assests\style.css">
-    <link rel="shortcut icon" type="image/png" href="C:\Users\iands\Desktop\ICH\ICH\ICH\Assests\favicon_io\favicon.ico">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    {% load static %}
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "favicon_io/apple-touch-icon.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "favicon_io/favicon-32x32.png" %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "favicon_io/favicon-16x16.png" %}">
+    <link rel="shortcut icon" type="image/png" href="{% static "favicon_io/favicon.ico" %}">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
     <title>Intracranial Brain Hemorrhage Detection</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark" id="navbar">
         <a class="navbar-brand" href="#" style="font-family: cursive; color: #c5c4c4; font-weight: bold;">
-            <img src="C:\Users\iands\Desktop\ICH\ICH\ICH\Assests\logo.png" width="40" height="30"
+            
+            <img src="{% static "images/logo.png" %}" width="40" height="30"
                 class="d-inline-block align-top" alt="">
             Intracranial Brain Hemorrhage Detection
         </a>
@@ -40,11 +53,10 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="C:\Users\iands\Desktop\ICH\ICH\ICH\Assests\decription.png" class="d-block w-100" alt="...">
+                <img src="{% static "images/decription.png" %}" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="C:\Users\iands\Desktop\ICH\ICH\ICH\Assests\brain.gif" class="d-block w-100" alt="...">
-
+                <img src="{% static "images/brain.gif" %}" class="d-block w-100" alt="..." >
             </div>
             <div class="hero__next-indiactor" id="indicator">
                 <span class="hero__next-indiactor--element">&nbsp;</span>
@@ -79,6 +91,7 @@
             </div>
         </div>
     </div>
+
     <div class="credit">
         <footer class="footer-section">
             <div class="container">
