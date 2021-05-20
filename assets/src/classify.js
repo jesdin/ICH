@@ -1,6 +1,10 @@
 // Uppy Uploader Script
 var uppy = null
 $(document).ready(function() {
+  $("#original").hide()
+  $("#windowed").hide()
+  $("#loading").hide()
+
   uppy = Uppy.Core({
     debug: true,
     autoProceed: true,
@@ -29,6 +33,8 @@ $(document).ready(function() {
 
   uppy.on('complete', (result) => {
     console.log('Upload complete! We’ve uploaded these files:', result.successful)
+    $("#loading").show()
+
     files = uppy.getFiles()
     if (files['length'] > 0) {
       // Preparing ajax request
@@ -43,7 +49,14 @@ $(document).ready(function() {
           action: 'post'
         },
         success: function (json) {
-          console.log(json)
+          // console.log(json)
+          $("#loading").hide()
+          path = json["path"]
+          path = "/static/" + path.slice(7,path.length)
+          $("#original").attr("src", path + '.png');
+          $("#original").show()
+          $("#windowed").attr("src", path + '_windowed.png');
+          $("#windowed").show()
         },
         error: function (xhr, errmsg, err) {
           console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
