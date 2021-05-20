@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 from io import BytesIO
 import base64
+import matplotlib.pyplot as plt
 
 HEIGHT = 256
 WIDTH = 256
@@ -43,14 +44,10 @@ def bsb_window(dcm):
     return bsb_img
 
 def _read(path):
-    # path = path + ".dcm"
     dcm = pydicom.dcmread(path + ".dcm")
-    # if (dcm.BitsStored == 12) and (dcm.PixelRepresentation == 0) and (int(dcm.RescaleIntercept) > -100):
-    #     correct_dcm(dcm)
-    # dcm = dcm.pixel_array * dcm.RescaleSlope + dcm.RescaleIntercept
-    # dcm = cv2.resize(dcm, SHAPE[:2], interpolation = cv2.INTER_LINEAR)
     dcm = dcm.pixel_array 
-    cv2.imwrite(path + '.png', dcm)
+    # cv2.imwrite(path + '.png', dcm)
+    plt.imsave(path + '.png', dcm, cmap=plt.cm.bone)
     return dcm
 
 def get_window(path):
@@ -58,8 +55,7 @@ def get_window(path):
     dcm = pydicom.dcmread(path)
     try:
         image = bsb_window(dcm)
-    except e:
-        print(e)
+    except:
         image = np.zeros(SHAPE)
     image -= image.min((0,1))
     image = (255*image).astype(np.uint8)
@@ -67,11 +63,9 @@ def get_window(path):
     return image
 
 def _save(path):
-    # image = _read(path)
-    # cv2.imwrite(path + ".png", image)
     _read(path)
     image = get_window(path)
-    cv2.imwrite(path + "_windowed.png", image)
+    plt.imsave(path + '_windowed.png', image)
 
 def get_blob(img):
     img = img.astype(np.uint8)
