@@ -1,30 +1,54 @@
-function readURL(input) {
-    if (input.files && input.files[0]) {                      // if input is file, files has content
-      var inputFileData = input.files[0];                     // shortcut
-      var reader = new FileReader();                          // FileReader() : init
-      reader.onload = function(e) {                           /* FileReader : set up ************** */
-        console.log('e',e) 
-        $('.file-upload-placeholder').hide();                 // call for action element : hide
-        // $('.file-upload-image').attr('src', e.target.result); // image element : set src data.
-        $('.file-upload-preview').show();                     // image element's container : show
-        $('.image-title').html(inputFileData.name);           // set image's title
-      };
-      console.log('input.files[0]',input.files[0])
-      reader.readAsDataURL(inputFileData);     // reads target inputFileData, launch `.onload` actions
-    } else { removeUpload(); }
-  }
-  
-  function removeUpload() {
-    var $clone = $('.file-upload-input').val('').clone(true); // create empty clone
-    $('.file-upload-input').replaceWith($clone);              // reset input: replaced by empty clone
-    $('.file-upload-placeholder').show();                     // show placeholder
-    $('.file-upload-preview').hide();                         // hide preview
-  }
-  
-  // Style when drag-over
-  $('.file-upload-placeholder').bind('dragover', function () {
-    $('.file-upload-placeholder').addClass('image-dropping');
-  });
-  $('.file-upload-placeholder').bind('dragleave', function () {
-    $('.file-upload-placeholder').removeClass('image-dropping');
-  });
+// Uppy Uploader Script
+var uppy = null
+$(document).ready(function() {
+  uppy = Uppy.Core({
+    debug: true,
+    autoProceed: true,
+    restrictions: {
+      maxFileSize: 1000000,
+      maxNumberOfFiles: 1,
+      minNumberOfFiles: 1,
+      allowedFileTypes: ['.dcm']
+    }
+  })
+  .use(Uppy.Dashboard, {
+    trigger: '.UppyModalOpenerBtn',
+    inline: true,
+    target: '#drag-drop-area',
+    replaceTargetContent: true,
+    showProgressDetails: true,
+    height: screen.height/4,
+    width: screen.width-20,
+    metaFields: [
+      { id: 'name', name: 'Name', placeholder: 'file name' },
+      { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
+    ],
+    browserBackButtonClose: true
+  })
+  .use(Uppy.Tus, { endpoint: 'https://master.tus.io/files/' })
+
+  uppy.on('complete', (result) => {
+    console.log('Upload complete! We’ve uploaded these files:', result.successful)
+    files = uppy.getFiles()
+    if (files['length'] > 0) {
+      // Preparing ajax request
+      imageURL = files[0]["tus"]["uploadUrl"]
+      imageName = files[0]["name"]
+      $.ajax({
+        type: 'GET',
+        url: '/getimage',
+        data: {
+          image: imageURL,
+          name: imageName,
+          action: 'post'
+        },
+        success: function (json) {
+          console.log(json)
+        },
+        error: function (xhr, errmsg, err) {
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+      });
+    }
+  })
+});

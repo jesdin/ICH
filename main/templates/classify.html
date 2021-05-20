@@ -14,6 +14,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     {% load static %}
+    <script src="{% static "src/classify.js" %}"></script>
+
+    <script src="https://transloadit.edgly.net/releases/uppy/v1.10.1/uppy.min.js"></script>
+    <link rel="stylesheet" href="{% static "css/uppy.min.css" %}">
 
     <link rel="apple-touch-icon" sizes="180x180" href="{% static "favicon_io/apple-touch-icon.png" %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static "favicon_io/favicon-32x32.png" %}">
@@ -23,9 +27,6 @@
 
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <link rel="stylesheet" href="{% static "css/classify.css" %}">
-
-    <script src="{% static "src/classify.js" %}"></script>
-
 
     <title>Intracranial Brain Hemorrhage Detection</title>
 </head>
@@ -52,24 +53,13 @@
     </nav>
 
 
-    <div class="file-upload">        
-        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Upload Image</button>
 
-        <div class="file-upload-placeholder">
-            <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".dcm" />
-            <div class="drag-text">
-            <h3>Drag and drop a file or select add Image</h3>
-            </div>
-        </div>
-        
-        <div class="file-upload-preview">
-            <!-- <img class="file-upload-image" src="#" alt="test" /> -->
-            <div class="file-upload-remove">
-            <button type="button" onclick="removeUpload()" class="remove-image">Delete <span class="image-title">Uploaded Image</span></button>
-            </div>
-        </div>
-    
-    </div>
+    <div id="drag-drop-area"></div>
+    <button type="button" class="result_button" id="submit">
+        <i class="loading-icon fa fa-spinner fa-spin hide"></i>
+        <!-- <span class="btn-text">GET RESULTS</span> -->
+    </button>
+
 
 
     <footer>
