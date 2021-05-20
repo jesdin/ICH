@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import urllib
 import os
-from main.windowing import _save
+from main.windowing import _save, get_window
+# from main.classify import get_classification
 
 # Create your views here.
 def home(request):
@@ -27,14 +28,12 @@ def getimage(request):
     urls = request.GET.get("image")
     path = "assets\\tmp\\"+ skey
     urllib.request.urlretrieve (urls, path + ".dcm")
-    _save(path)
+    image = get_window(path)
+    _save(path, image)
+    # prediction = get_classification(image)
     data = {
-        'path': path
+        'path': path,
+        # 'prediction': prediction
     }
     os.remove(path + ".dcm")
-    # data = {
-    #     "image": main.windowing.get_blob(image).decode("utf-8"),
-    #     # "windowed": main.windowing.get_blob(windowed)
-    # }
-# .decode("utf-8")
     return JsonResponse(data, status=200)

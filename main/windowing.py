@@ -62,18 +62,9 @@ def get_window(path):
     image = cv2.resize(image, (256, 256))
     return image
 
-def _save(path):
+def _save(path, image):
     _read(path)
-    image = get_window(path)
     plt.imsave(path + '_windowed.png', image)
-
-def get_blob(img):
-    img = img.astype(np.uint8)
-    img = Image.fromarray(img)
-    buffered = BytesIO()
-    img.save(buffered, format="png")    
-    img = base64.b64encode(buffered.getvalue())
-    return img
 
 
 # import windowing
