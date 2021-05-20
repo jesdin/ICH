@@ -10,7 +10,6 @@ WIDTH = 256
 CHANNELS = 3
 
 SHAPE = (HEIGHT, WIDTH, CHANNELS)
-PATH = "file.dcm"
 
 def correct_dcm(dcm):
     x = dcm.pixel_array + 1000
@@ -43,24 +42,36 @@ def bsb_window(dcm):
     bsb_img = np.array([brain_img, subdural_img, soft_img]).transpose(1,2,0)
     return bsb_img
 
-def _read(path=PATH):
-    dcm = pydicom.dcmread(PATH)
-    if (dcm.BitsStored == 12) and (dcm.PixelRepresentation == 0) and (int(dcm.RescaleIntercept) > -100):
-        correct_dcm(dcm)
-    dcm = dcm.pixel_array * dcm.RescaleSlope + dcm.RescaleIntercept
-    dcm = cv2.resize(dcm, SHAPE[:2], interpolation = cv2.INTER_LINEAR)
+def _read(path):
+    # path = path + ".dcm"
+    dcm = pydicom.dcmread(path + ".dcm")
+    # if (dcm.BitsStored == 12) and (dcm.PixelRepresentation == 0) and (int(dcm.RescaleIntercept) > -100):
+    #     correct_dcm(dcm)
+    # dcm = dcm.pixel_array * dcm.RescaleSlope + dcm.RescaleIntercept
+    # dcm = cv2.resize(dcm, SHAPE[:2], interpolation = cv2.INTER_LINEAR)
+    dcm = dcm.pixel_array 
+    cv2.imwrite(path + '.png', dcm)
     return dcm
 
-def get_window(path=PATH):
+def get_window(path):
+    path = path + ".dcm"
     dcm = pydicom.dcmread(path)
     try:
         image = bsb_window(dcm)
-    except:
+    except e:
+        print(e)
         image = np.zeros(SHAPE)
     image -= image.min((0,1))
     image = (255*image).astype(np.uint8)
     image = cv2.resize(image, (256, 256))
     return image
+
+def _save(path):
+    # image = _read(path)
+    # cv2.imwrite(path + ".png", image)
+    _read(path)
+    image = get_window(path)
+    cv2.imwrite(path + "_windowed.png", image)
 
 def get_blob(img):
     img = img.astype(np.uint8)

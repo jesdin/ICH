@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import urllib
-import json
-import main.windowing
+import os
+from main.windowing import _save
 
 # Create your views here.
 def home(request):
@@ -14,18 +14,19 @@ def home(request):
 def classify(request):
     if not request.session.exists(request.session.session_key):
         request.session.create()
-    print("session ID", request.session.session_key)
+    # print("tmp\\"+ request.session.session_key  +".dcm")
     return render(request, 'classify.html')
 
 def getimage(request):
-    print("session ID", request.session.session_key)
+    skey = request.session.session_key
+    urls = request.GET.get("image")
+    path = "assets\\tmp\\"+ skey
+    urllib.request.urlretrieve (urls, path + ".dcm")
+    _save(path)
     data = {
-        's': request.session.session_key
+        'path': path
     }
-    # urls = request.GET.get("image") #.split("~")
-    # urllib.request.urlretrieve (urls, "file.dcm")
-    # image = main.windowing._read()
-    # # windowed = main.windowing.get_window()
+    os.remove(path + ".dcm")
     # data = {
     #     "image": main.windowing.get_blob(image).decode("utf-8"),
     #     # "windowed": main.windowing.get_blob(windowed)
