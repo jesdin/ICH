@@ -1,0 +1,15 @@
+#drag-drop-area {
+  margin-top: 1.2%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+body {
+  background-color: #343433;
+}
+.btn-result{
+  margin-left: 5%;
+  margin-top: 1.5%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 90%;
+}

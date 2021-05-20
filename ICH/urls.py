@@ -21,4 +21,6 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('predict/', views.predict, name='predict'),
+    path('detect', views.classify, name='classify'),
+    path('getimage', views.getimage, name='getimage'),
 ]

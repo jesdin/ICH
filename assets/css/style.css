@@ -231,7 +231,10 @@ ul {
     text-transform: capitalize;
 }
 
-.copyright-area {
+.copyright-area{
+    position: fixed;
+    bottom: 0; 
+    width: 100%;
     background: #202020;
     padding: 25px 0;
 }
