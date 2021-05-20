@@ -33,7 +33,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark" id="navbar">
-        <a class="navbar-brand" href="#" style="font-family: cursive; color: #c5c4c4; font-weight: bold;">
+        <a class="navbar-brand" href="{% url 'home' %}" style="font-family: ui-sans-serif;; color: #c5c4c4;">
             
             <img src="{% static "images/logo.png" %}" width="40" height="30"
                 class="d-inline-block align-top" alt="">
@@ -45,9 +45,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home</a>
-                <a class="nav-item nav-link" href="#" id="aboutus">Classify</a>
-                <a class="nav-item nav-link" href="#" id="aboutus">Check Severity</a>
+                <a class="nav-item nav-link active" href="{% url 'home' %}">Home</a>
+                <a class="nav-item nav-link" href="#" id="classify">Classify</a>
+                <a class="nav-item nav-link" href="#" id="severity">Check Severity</a>
             </div>
         </div>
     </nav>
@@ -68,7 +68,8 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 text-center text-lg-lefts">
                     <div class="copyright-text">
-                        <p>Copyright &copy; 2020, All Right Reserved <a href="#">Text Summarization</a></p>
+                        <p>Copyright &copy; 2021, All Right Reserved <a href="#">Intracranial Brain Hemorrhage
+                            Detection</a></p>
                     </div>
                 </div>
             </div>

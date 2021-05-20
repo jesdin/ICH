@@ -1,3 +1,13 @@
+/*------Browser scroll bar------*/
+::-webkit-scrollbar {
+  height: .4rem;
+  width: .4rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 255, 255);
+}
+
 #drag-drop-area {
   margin-top: 1.2%;
   margin-left: 20px;

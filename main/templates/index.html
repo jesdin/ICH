@@ -29,7 +29,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark" id="navbar">
-        <a class="navbar-brand" href="#" style="font-family: ui-sans-serif;; color: #c5c4c4;">
+        <a class="navbar-brand" href="{% url 'home' %}" style="font-family: ui-sans-serif;; color: #c5c4c4;">
 
             <img src="{% static "images/logo.png" %}" width="35" height="25" class="d-inline-block align-top" alt="">
             Intracranial Brain Hemorrhage Detection
@@ -41,8 +41,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{% url 'home' %}">Home</a>
-                <a class="nav-item nav-link" href="#" id="aboutus">Classify</a>
-                <a class="nav-item nav-link" href="#" id="aboutus">Check Severity</a>
+                <a class="nav-item nav-link" href="{% url 'classify' %}" id="aboutus">Classify</a>
+                <a class="nav-item nav-link" href="" id="aboutus">Check Severity</a>
                 <a class="nav-item nav-link" href="{% url 'predict' %}" id="predict">Predict</a>
             </div>
         </div>
@@ -61,7 +61,7 @@
                     known as a hemorrhagic stroke, or following a significant bleed in the head."
                 </p>
             </div>
-            <a href="#" class="bttn bttn-1" id="sub">
+            <a href="{% url 'classify' %}" class="bttn bttn-1" id="sub">
                 <svg>
                     <rect x="0" y="0" fill="none" width="100%" height="100%" />
                 </svg>
@@ -86,10 +86,18 @@
                                     <h3>Our Team</h3>
                                 </div>
                                 <div class="names">
-                                    <p>Jesdin Raphael</p>
-                                    <p>Prishita Kadam</p>
-                                    <p>Prajwal karale</p>
-                                    <p>Ian D'silva</p>
+                                    <a href="https://github.com/jesdin">
+                                        <p>Jesdin Raphael</p>
+                                    </a>
+                                    <a href="https://github.com/prishitakadam">
+                                        <p>Prishita Kadam</p>
+                                    </a>
+                                    <a href="https://github.com/PrajwalKarale">
+                                        <p>Prajwal karale</p>
+                                    </a>
+                                    <a href="https://github.com/dsilvaian">
+                                        <p>Ian D'silva</p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +110,8 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 text-center text-lg-lefts">
                     <div class="copyright-text">
-                        <p>Copyright &copy; 2020, All Right Reserved <a href="#">Intracranial Brain Hemorrhage
+                        <p>Copyright &copy; 2021, All Right Reserved <a href="{% url 'home' %}">Intracranial Brain
+                                Hemorrhage
                                 Detection</a></p>
                     </div>
                 </div>
