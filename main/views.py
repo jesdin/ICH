@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 import urllib
 import os
 from main.windowing import _save, get_window
-# from main.classify import get_classification
+from main.classify import get_classification
 
 # Create your views here.
 def home(request):
@@ -26,14 +26,16 @@ def classify(request):
 def getimage(request):
     skey = request.session.session_key
     urls = request.GET.get("image")
-    path = "assets\\tmp\\"+ skey
-    urllib.request.urlretrieve (urls, path + ".dcm")
-    image = get_window(path)
-    _save(path, image)
-    # prediction = get_classification(image)
+    PATH = "assets\\tmp\\"+ skey
+    urllib.request.urlretrieve (urls, PATH + ".dcm")
+    
+    print("\n\ntype:", PATH)
+    image = get_window(PATH + ".dcm")
+    _save(PATH, image)
+    prediction = get_classification(image)
     data = {
-        'path': path,
-        # 'prediction': prediction
+        'path': PATH,
+        'prediction': prediction
     }
-    os.remove(path + ".dcm")
+    os.remove(PATH + ".dcm")
     return JsonResponse(data, status=200)

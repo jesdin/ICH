@@ -1,9 +1,6 @@
 import pydicom
 import cv2
 import numpy as np
-from PIL import Image
-from io import BytesIO
-import base64
 import matplotlib.pyplot as plt
 
 HEIGHT = 256
@@ -51,15 +48,14 @@ def _read(path):
     return dcm
 
 def get_window(path):
-    path = path + ".dcm"
     dcm = pydicom.dcmread(path)
     try:
         image = bsb_window(dcm)
     except:
         image = np.zeros(SHAPE)
-    image -= image.min((0,1))
-    image = (255*image).astype(np.uint8)
-    image = cv2.resize(image, (256, 256))
+    # image -= image.min((0,1))
+    # image = (255*image).astype(np.uint8)
+    # image = cv2.resize(image, (256, 256))
     return image
 
 def _save(path, image):

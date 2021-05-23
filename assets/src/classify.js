@@ -51,6 +51,7 @@ $(document).ready(function() {
         success: function (json) {
           // console.log(json)
           $("#loading").hide()
+          console.log("predictions", json["prediction"])
           path = json["path"]
           path = "/static/" + path.slice(7,path.length)
           $("#original").attr("src", path + '.png');
