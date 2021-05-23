@@ -27,6 +27,7 @@ body {
     background-color: #151414;
     /* background-color: rgb(37, 37, 37); */
     color: white;
+    position: relative;
 }
 
 /*------Navigation bar------*/
@@ -48,11 +49,13 @@ body {
   place-items: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  
 }
 
 .rw {
   padding: 2rem;
   border-radius: 0.7rem;
+  margin: 3rem;
 }
 
 .form-check-input {
@@ -161,4 +164,33 @@ body {
   stroke-dasharray: 15, 310;
   stroke-dashoffset: 48;
   transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.copyright-area{
+  position: fixed;
+  bottom: 0; 
+  width: 100%;
+  background: #202020;
+  padding: 10px 0px 10px 0px;
+}
+
+.copyright-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #878787;
+}
+
+.copyright-text p a {
+  color: #ff1100;
+}
+
+.rows {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
