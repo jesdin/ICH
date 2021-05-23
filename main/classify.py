@@ -1,50 +1,73 @@
-# from main.windowing import get_window
+from matplotlib.pyplot import step
+from main.windowing import get_window
 
-# import keras.backend as K
-# from keras.applications import Xception
-# from keras.layers import Dense, Dropout, GlobalAveragePooling2D, Bidirectional
-# from keras.models import Model, load_model
-# from keras.layers import Lambda
-# from keras.layers import Reshape
-# from keras.layers import GRU
-
-# import numpy as np
 # import tensorflow as tf
+import tensorflow.compat.v1 as tf
+import keras.backend as K
+# from tensorflow.keras import Input
+# from tensorflow.keras.applications import Xception
+# from tensorflow.keras.layers import Dense, Dropout, GlobalAveragePooling2D, Bidirectional
+# from tensorflow.keras.models import Model
+# from tensorflow.keras.layers import Lambda
+# from tensorflow.keras.layers import Reshape
+# from tensorflow.keras.layers import GRU
 
-# def rgb_to_grayscale(input):
-#     """Average out each pixel across its 3 RGB layers resulting in a grayscale image"""
-#     return K.mean(input, axis=3)
+import numpy as np
 
-# def rgb_to_grayscale_output_shape(input_shape):
-#     return input_shape[:-1]
+from tensorflow.python.framework.ops import disable_eager_execution
+disable_eager_execution()
 
-# # Create Model
-# def create_model():    
-#     base_model = Xception(weights = 'imagenet', include_top = False, input_tensor = SHAPE_IN)
-#     x = base_model.output
-#     x = GlobalAveragePooling2D()(x)
-#     cnn_bottleneck = Dense(1024,activation='relu')(x)
+K.clear_session()
 
-#     #Creating RNN
-#     x = Lambda(rgb_to_grayscale, rgb_to_grayscale_output_shape)(SHAPE_IN)
-#     x = Reshape((64, 1024))(x)
-#     x = GRU(512, return_sequences=True, dropout = 0.2)(x)
-#     rnn_output = GRU(512)(x)
-#     rnn_output = Dense(1024,activation='relu')(rnn_output)
-#     x = tf.keras.layers.Multiply()([cnn_bottleneck , rnn_output])
+# config.gpu_options.allow_growth = True
+# config.gpu_options.per_process_gpu_memory_fraction = 0.6
+
+# init_op = tf.initialize_all_variables()
+
+session = tf.Session()
+# session.run(init_op)
+
+K.set_session(session)
+
+PATH = 'assets/model/weights.hdf5'
+SHAPE_IN = tf.keras.Input(shape = (256,256,3))
+
+def rgb_to_grayscale(input):
+    """Average out each pixel across its 3 RGB layers resulting in a grayscale image"""
+    return K.mean(input, axis=3)
+
+def rgb_to_grayscale_output_shape(input_shape):
+    return input_shape[:-1]
+
+# Create Model
+def create_model():    
+    base_model = tf.keras.applications.Xception(weights = None, include_top = False, input_tensor = SHAPE_IN)
+    x = base_model.output
+    x = tf.keras.layers.GlobalAveragePooling2D()(x)
+    cnn_bottleneck = tf.keras.layers.Dense(1024,activation='relu')(x)
+
+    #Creating RNN
+    x = tf.keras.layers.Lambda(rgb_to_grayscale, rgb_to_grayscale_output_shape)(SHAPE_IN)
+    x = tf.keras.layers.Reshape((64, 1024))(x)
+    x = tf.keras.layers.GRU(512, return_sequences=True, dropout = 0.2, reset_after=True)(x)
+    rnn_output = tf.keras.layers.GRU(512, reset_after=True)(x)
+    rnn_output = tf.keras.layers.Dense(1024,activation='relu')(rnn_output)
+    x = tf.keras.layers.Multiply()([cnn_bottleneck , rnn_output])
     
-    
-#     x = Dropout(0.15)(x)
-#     y_pred = Dense(6, activation = 'sigmoid')(x)
+    x = tf.keras.layers.Dropout(0.15)(x)
+    y_pred = tf.keras.layers.Dense(6, activation = 'sigmoid')(x)
 
-#     return Model(inputs = base_model.input, outputs = y_pred)
+    return tf.keras.models.Model(inputs = base_model.input, outputs = y_pred)
 
-# MODEL = create_model()
+with session.as_default():
+    MODEL = create_model()
+    MODEL.load_weights(PATH)
+    MODEL._make_predict_function()
 
-# model = load_model('assetes\\model\\weights.h5')
-
-# def get_classification(path):
-#     image = get_window(path)
-#     result = model.predict(tf.expand_dims(image, axis=0))
-#     result = np.round(result)
-#     return result
+def get_classification(image):
+    with session.as_default():
+        result = MODEL.predict(np.expand_dims(image, axis=0), steps=None)
+    result = np.round(result)
+    result = str(list(result))
+    print("Prediction", result)
+    return result
