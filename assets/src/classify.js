@@ -1,13 +1,11 @@
-// Uppy Uploader Script
 var uppy = null
 $(document).ready(function() {
-  // $("#original").hide()
-  // $("#windowed").hide()
   $("#images").hide()
   $("#loading").hide()
   $("#uploaded").hide()
   $("#result-area").hide()
 
+// Uppy Uploader Script (Initialize uppy uploader)
   uppy = Uppy.Core({
     debug: true,
     autoProceed: true,
@@ -32,22 +30,26 @@ $(document).ready(function() {
     ],
     browserBackButtonClose: true
   })
-  .use(Uppy.Tus, { endpoint: 'https://master.tus.io/files/' })
+  .use(Uppy.Tus, { endpoint: 'https://master.tus.io/files/' }) // for uploading image
 
+  // on upload complete task
   uppy.on('complete', (result) => {
-    console.log('Upload complete! We’ve uploaded these files:', result.successful)
+    // console.log('Upload complete! We’ve uploaded these files:', result.successful)
     
+    // get uploaded files
     files = uppy.getFiles()
     if (files['length'] > 0) {
       // Preparing ajax request
       imageURL = files[0]["tus"]["uploadUrl"]
       imageName = files[0]["name"]
 
+      // display File Uploaded successfully text and hide file uploader
       $('#message').text('File ' + imageName + 'Uploaded Successfully');
       $("#uploaded").show()
       $("#drag-drop-area").hide()
       $("#loading").show()
 
+      // ajax request
       $.ajax({
         type: 'GET',
         url: '/getimage',
@@ -57,17 +59,19 @@ $(document).ready(function() {
           action: 'post'
         },
         success: function (json) {
-          // console.log(json)
           $("#loading").hide()
           console.log("predictions", json["prediction"])
 
+          // image path
           path = json["path"]
           path = "/static/" + path.slice(7,path.length)
 
+          // display images
           $("#original").attr("src", path + '.png');
           $("#windowed").attr("src", path + '_windowed.png');
           $("#images").show()
 
+          // get prediction and display message
           p = json["prediction"]
           p = p.replace(/\D/g,'')
           p = p.slice(0,-2)
