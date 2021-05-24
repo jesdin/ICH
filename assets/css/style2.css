@@ -166,6 +166,15 @@ body {
   transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+.rowone {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
 .copyright-area{
   position: fixed;
   bottom: 0; 
@@ -184,13 +193,3 @@ body {
   color: #ff1100;
 }
 
-.rows {
-    display: flex;
-    flex-wrap: nowrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-}

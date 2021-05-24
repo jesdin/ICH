@@ -37,7 +37,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark" id="navbar">
-        <a class="navbar-brand" href="#" style="font-family: ui-sans-serif; color: #c5c4c4;">
+        <a class="navbar-brand" href="{% url 'home' %}" style="font-family: ui-sans-serif; color: #c5c4c4;">
 
             <img src="{% static "images/logo.png" %}" width="40" height="30" class="d-inline-block align-top" alt="">
             Intracranial Brain Hemorrhage Detection
@@ -49,9 +49,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{% url 'home' %}">Home</a>
-                <a class="nav-item nav-link" href="#" id="aboutus">Classify</a>
-                <a class="nav-item nav-link" href="#" id="aboutus">Check Severity</a>
-                <a class="nav-item nav-link" href="{% url 'predict' %}" id="predict">Predict</a>
+                <a class="nav-item nav-link" href="{% url 'classify' %}" id="aboutus">Classify</a>
+                <a class="nav-item nav-link" href="{% url 'predict' %}" id="predict">Check Severity</a>
+                <!-- <a class="nav-item nav-link" href="{% url 'predict' %}" id="predict">Predict</a> -->
             </div>
         </div>
     </nav>
@@ -75,9 +75,9 @@
                         <div class="col-8">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="Eye Opening Response"
-                                    id="eyesopenspontaneaously" value="Eyes open spontaneaously">
+                                    id="eyesopenspontaneaously" value="Eyes open spontaneously">
                                 <label class="form-check-label" for="eyesopenspontaneaously">
-                                    Eyes open spontaneaously
+                                    Eyes open spontaneously
                                 </label>
                             </div>
                             <div class="form-check">
@@ -96,9 +96,9 @@
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="Eye Opening Response"
-                                    id="noeyeOpening" value="No eye Opening">
+                                    id="noeyeOpening" value="No eye opening">
                                 <label class="form-check-label" for="noeyeOpening">
-                                    No eye Opening
+                                    No eye opening
                                 </label>
                             </div>
                         </div>
@@ -119,16 +119,16 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="Verbal Response"
                                     id="confusedconversation"
-                                    value="Confused conversation, but able to answerquestions">
+                                    value="Confused conversation, but able to answer questions">
                                 <label class="form-check-label" for="confusedconversation">
-                                    Confused conversation, but able to answerquestions
+                                    Confused conversation, but able to answer questions
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="Verbal Response"
-                                    id="inappropriateresponses" value="Inappropriate responses, words discernible">
+                                    id="inappropriateresponses" value="Inappropraite responses, words discernible">
                                 <label class="form-check-label" for="inappropriateresponses">
-                                    Inappropriate responses, words discernible
+                                    Inappropraite responses, words discernible
                                 </label>
                             </div>
                             <div class="form-check">
@@ -154,45 +154,45 @@
                         </div>
                         <div class="col-8">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Motor Reponse" id="obeyscommands"
+                                <input class="form-check-input" type="radio" name="Motor Response" id="obeyscommands"
                                     value="Obeys commands for movement">
                                 <label class="form-check-label" for="obeyscommands">
                                     Obeys commands for movement
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Motor Reponse"
+                                <input class="form-check-input" type="radio" name="Motor Response"
                                     id="purposefulmovement" value="Purposeful movement to painful stimulus">
                                 <label class="form-check-label" for="purposefulmovement">
                                     Purposeful movement to painful stimulus
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Motor Reponse" id="withdrawsfrompain"
-                                    value="Withdraws from pain">
+                                <input class="form-check-input" type="radio" name="Motor Response"
+                                    id="withdrawsfrompain" value="Withdraws from pain">
                                 <label class="form-check-label" for="withdrawsfrompain">
                                     Withdraws from pain
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Motor Reponse"
+                                <input class="form-check-input" type="radio" name="Motor Response"
                                     id="decoraticateposture" value="Abnormal (spastic) flexion, decoraticate posture">
                                 <label class="form-check-label" for="decoraticateposture">
                                     Abnormal (spastic) flexion, decoraticate posture
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Motor Reponse" id="decerbrateposture"
-                                    value="Extensor (rigid) response, decerbrate posture">
+                                <input class="form-check-input" type="radio" name="Motor Response"
+                                    id="decerbrateposture" value="Extensor (rigid) response, decerbrate posture">
                                 <label class="form-check-label" for="decerbrateposture">
                                     Extensor (rigid) response, decerbrate posture
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Motor Reponse" id="nomotorresponse"
-                                    value="No motor reponse">
+                                <input class="form-check-input" type="radio" name="Motor Response" id="nomotorresponse"
+                                    value="No motor response">
                                 <label class="form-check-label" for="nomotorresponse">
-                                    No motor reponse
+                                    No motor response
                                 </label>
                             </div>
                         </div>
@@ -211,15 +211,28 @@
                         </div>
                     </div>
                 </div>
+                <!-- <div class="display">
+                    <p id="res"></p>
+                </div> -->
+                <div class="card text-white bg-danger">
+                <h5 class="card-header">Severity Prediction</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Brain Hemmoraghe Type:</h5>
+                    <h4><p class="card-text" id="res"></p></h4>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="p-3" style="z-index: 3000; bottom: 2rem; right: 1rem; position: fixed; ">
         <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <!-- <img src="..." class="rounded me-2" alt="..."> -->
-                <strong style="margin-right: 2rem; background-color: white; color: rgb(0, 0, 0);" >Intracranial Brain Hemorrhage Detection</strong>
-                <button id="close" type="button" data-bs-dismiss="toast" aria-label="Close"><i class="fas fa-times"></i></button>
+                <strong style="margin-right: 2rem; background-color: white; color: rgb(0, 0, 0);">Intracranial Brain
+                    Hemorrhage Detection</strong>
+                <button id="close" type="button" data-bs-dismiss="toast" aria-label="Close"><i
+                        class="fas fa-times"></i></button>
             </div>
             <div class="toast-body"
                 style="color: rgb(255, 0, 0); background-color: #151414; font-family: sans-serif; font-weight: bold; padding: 1rem;">
@@ -229,7 +242,7 @@
     </div>
     <div class="copyright-area">
         <div class="container">
-            <div class="row">
+            <div class="rowone">
                 <div class="col-xl-6 col-lg-6 text-center text-lg-lefts">
                     <div class="copyright-text">
                         <p>Copyright &copy; 2021, All Right Reserved <a href="{% url 'home' %}">Intracranial Brain
@@ -243,7 +256,6 @@
     </div>
 </body>
 <script>
-
     checkButton = () => {
         const form_element = document.getElementById('ich_predict');
         const mssg_close = document.getElementById('close');
@@ -267,6 +279,73 @@
                 toast.dispose();
             })
         }
+
+        // let score = 0;
+        // console.log(x['Eye Opening Response']);
+
+        let eye_opening_response = {
+            'Eyes open spontaneously': 4,
+            'Eyes open to verbal command, speech or shout': 3,
+            'Eyes open to pain (not applied to face)': 2,
+            'No eye opening': 1,
+        }
+
+        let verbal_response = {
+            'Oriented': 5,
+            'Confused conversation, but able to answer questions': 4,
+            'Inappropraite responses, words discernible': 3,
+            'Incomprehensible sounds or speech': 2,
+            'No verbal response': 1,
+        }
+
+        let motor_response = {
+            'Obeys commands for movement': 6,
+            'Purposeful movement to painful stimulus': 5,
+            'Withdraws from pain': 4,
+            'Abnormal (spastic) flexion, decoraticate posture': 3,
+            'Extensor (rigid) response, decerbrate posture': 2,
+            'No motor response': 1,
+        }
+
+        let eye_opening_response_value = x["Eye Opening Response"];
+        let verbal_response_value = x["Verbal Response"];
+        let motor_response_value = x["Motor Response"];
+
+        // console.log(eye_opening_response_value);
+        // console.log(verbal_response_value);
+        // console.log(motor_response_value);
+
+        let eye_opening_response_score = eye_opening_response[eye_opening_response_value];
+        let verbal_response_score = verbal_response[verbal_response_value];
+        let motor_response_score = motor_response[motor_response_value];
+
+        console.log(eye_opening_response_score);
+        console.log(verbal_response_score);
+        console.log(motor_response_score);
+
+        let score = 0;
+        score = (eye_opening_response_score + verbal_response_score + motor_response_score);
+
+        console.log(score);
+
+        let result = '';
+
+        if (score >= 13 && score <= 15) {
+            // console.log('Minor Brain injury');
+            result = 'Minor Brain injury';
+
+        } else if (score >= 9 && score <= 12) {
+            // console.log('Moderate Brain injury');
+            result = 'Moderate Brain injury';
+        } else {
+            // console.log('Severe Brain injury');
+            result = 'Severe Brain injury';
+        }
+
+        document.getElementById("res").innerHTML = result;
+
+        // console.log(result);
     }
 </script>
+
 </html>
