@@ -478,7 +478,8 @@
 }
 
 .uppy-size--md .uppy-StatusBar {
-    height: 46px
+    height: 46px;
+    background-color: #0060ff80;
 }
 
 .uppy-StatusBar:before {
@@ -2373,7 +2374,8 @@ svg.UppyIcon.retry {
 
 .uppy-size--md .uppy-DashboardContent-bar {
     height: 50px;
-    padding: 0 15px
+    padding: 0 15px;
+    background-color: #0060ff80;
 }
 
 .uppy-DashboardContent-title {
@@ -2396,7 +2398,8 @@ svg.UppyIcon.retry {
 .uppy-size--md .uppy-DashboardContent-title {
     font-size: 14px;
     line-height: 50px;
-    max-width: 300px
+    max-width: 300px;
+    color: white;
 }
 
 .uppy-DashboardContent-back {
@@ -2433,8 +2436,11 @@ svg.UppyIcon.retry {
 }
 
 .uppy-size--md .uppy-DashboardContent-back {
-    font-size: 14px
+    font-size: 14px;
+    color: red;
+    font-weight: 600;
 }
+
 
 .uppy-DashboardContent-addMore {
     background: none;

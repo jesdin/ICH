@@ -8,6 +8,9 @@
     background: rgb(255, 255, 255);
 }
 
+body {
+    background-color: black;
+}
 
 /*------Navigation bar------*/
 .navbar {
@@ -244,11 +247,11 @@ ul {
     text-transform: capitalize;
 }
 
-.copyright-area{
+.copyright-area {
     position: fixed;
-    bottom: 0; 
+    bottom: 0;
     width: 100%;
-    background-color:  #00010e;
+    background-color: #00010e;
     /* background: #202020; */
     padding: 10px 0px 10px 0px;
 }

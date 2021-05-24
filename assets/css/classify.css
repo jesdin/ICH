@@ -55,6 +55,16 @@ body {
   justify-content: center;
   padding-bottom: 4rem;
   color: red;
+  font-family: ui-sans-serif;
+}
+
+#result-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 4rem;
+  color: red;
+  font-family: ui-sans-serif;
 }
 
 #topic {

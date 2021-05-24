@@ -43,7 +43,7 @@ $(document).ready(function() {
       imageURL = files[0]["tus"]["uploadUrl"]
       imageName = files[0]["name"]
 
-      $('#message').text('File ' + imageName + 'Uploaded Successfully');
+      $('#message').text('File ' + imageName + ' Uploaded Successfully');
       $("#uploaded").show()
       $("#drag-drop-area").hide()
       $("#loading").show()
@@ -71,7 +71,7 @@ $(document).ready(function() {
           p = json["prediction"]
           p = p.replace(/\D/g,'')
           p = p.slice(0,-2)
-          if(parseInt(p[0])) {
+          if(parseInt(p[0])==0) {
             $('#result').text("ICH Not Detected");
           } else {
             ICHtype = ""
@@ -80,18 +80,21 @@ $(document).ready(function() {
                 if (i == 1) {
                   ICHtype += "Epidural "
                 } else if(i == 2) {
-                  ICHtype += "intraparenchymal "
+                  ICHtype += "Intraparenchymal "
                 } else if(i == 3) {
-                  ICHtype += "intraventricular "
+                  ICHtype += "Intraventricular "
                 } else if(i == 4) {
                   ICHtype += "Subarachnoid "
                 } else if(i == 5) {
                   ICHtype += "Subdural "
                 }
               }
+              console.log(ICHtype, p[i]);
             }
             if(ICHtype.length > 0){
-              $('#result').text("ICH Detected: Type: ", ICHtype);
+              $('#result').text("ICH Detected");
+              $('#result-type').text("Type: " + ICHtype);
+
             } else {
               $('#result').text("ICH NOT Detected");
             }
