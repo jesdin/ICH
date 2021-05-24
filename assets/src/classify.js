@@ -1,9 +1,12 @@
 // Uppy Uploader Script
 var uppy = null
 $(document).ready(function() {
-  $("#original").hide()
-  $("#windowed").hide()
+  // $("#original").hide()
+  // $("#windowed").hide()
+  $("#images").hide()
   $("#loading").hide()
+  $("#uploaded").hide()
+  $("#result-area").hide()
 
   uppy = Uppy.Core({
     debug: true,
@@ -33,13 +36,18 @@ $(document).ready(function() {
 
   uppy.on('complete', (result) => {
     console.log('Upload complete! We’ve uploaded these files:', result.successful)
-    $("#loading").show()
-
+    
     files = uppy.getFiles()
     if (files['length'] > 0) {
       // Preparing ajax request
       imageURL = files[0]["tus"]["uploadUrl"]
       imageName = files[0]["name"]
+
+      $('#message').text('File ' + imageName + 'Uploaded Successfully');
+      $("#uploaded").show()
+      $("#drag-drop-area").hide()
+      $("#loading").show()
+
       $.ajax({
         type: 'GET',
         url: '/getimage',
@@ -52,12 +60,45 @@ $(document).ready(function() {
           // console.log(json)
           $("#loading").hide()
           console.log("predictions", json["prediction"])
+
           path = json["path"]
           path = "/static/" + path.slice(7,path.length)
+
           $("#original").attr("src", path + '.png');
-          $("#original").show()
           $("#windowed").attr("src", path + '_windowed.png');
-          $("#windowed").show()
+          $("#images").show()
+
+          p = json["prediction"]
+          p = p.replace(/\D/g,'')
+          p = p.slice(0,-2)
+          if(parseInt(p[0])) {
+            $('#result').text("ICH Not Detected");
+          } else {
+            ICHtype = ""
+            for (i=1; i<p.length; i++) {
+              if(parseInt(p[i])) {
+                if (i == 1) {
+                  ICHtype += "Epidural "
+                } else if(i == 2) {
+                  ICHtype += "intraparenchymal "
+                } else if(i == 3) {
+                  ICHtype += "intraventricular "
+                } else if(i == 4) {
+                  ICHtype += "Subarachnoid "
+                } else if(i == 5) {
+                  ICHtype += "Subdural "
+                }
+              }
+            }
+            if(ICHtype.length > 0){
+              $('#result').text("ICH Detected: Type: ", ICHtype);
+            } else {
+              $('#result').text("ICH Detected");
+            }
+          }
+    
+          $('#result').text(json["prediction"]);
+          $("#result-area").show()
         },
         error: function (xhr, errmsg, err) {
           console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
