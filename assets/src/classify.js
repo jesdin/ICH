@@ -93,11 +93,10 @@ $(document).ready(function() {
             if(ICHtype.length > 0){
               $('#result').text("ICH Detected: Type: ", ICHtype);
             } else {
-              $('#result').text("ICH Detected");
+              $('#result').text("ICH NOT Detected");
             }
           }
     
-          $('#result').text(json["prediction"]);
           $("#result-area").show()
         },
         error: function (xhr, errmsg, err) {
