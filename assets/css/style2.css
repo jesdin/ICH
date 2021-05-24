@@ -20,20 +20,20 @@
 }
 
 body {
-    display: grid;
-    place-items: center;
-    box-sizing: border-box;
-    min-height: 100vh;
-    background-color: #151414;
-    /* background-color: rgb(37, 37, 37); */
-    color: white;
-    position: relative;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background-color: #000000;
+  /* background-color: rgb(37, 37, 37); */
+  color: white;
+  position: relative;
 }
 
 /*------Navigation bar------*/
 .navbar {
-  box-shadow: 0px 5px 10px rgb(52 52 52);
-  background-color: #212529 !important;
+  box-shadow: 0px 5px 10px rgb(37, 37, 37);
+  background-color: #00010e;
   border-radius: 0rem 0rem 0.5rem 0.5rem;
   height: 6vh;
   width: 100%;
@@ -44,12 +44,20 @@ body {
   justify-content: flex-end;
 }
 
+#topic {
+  color: white;
+}
+
+#topic-secondary {
+  color: rgba(255, 255, 255, 0.651);
+}
+
 .tablerow {
   display: grid;
   place-items: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  
+
 }
 
 .rw {
@@ -63,11 +71,12 @@ body {
 }
 
 .form-check-label {
-  background-color: rgb(192, 192, 192);
-  color: black;
+  background-color: #212529;
+  /* background-color: rgb(192, 192, 192); */
+  color: white;
   padding: 0.5rem 1rem;
   width: 100%;
-  border-bottom: 1px solid rgb(100, 100, 100);
+  border-bottom: 1px solid #0d1822;
 }
 
 .form-check-label:first-child {
@@ -77,7 +86,7 @@ body {
 }
 
 .form-check-input:checked+.form-check-label {
-  background-color: black;
+  background-color: #a20001;
   color: white;
 }
 
@@ -145,7 +154,7 @@ body {
 
 .bttn-1 rect {
   fill: none;
-  stroke: #000000;
+  stroke: #ff0000;
   stroke-width: 2;
   stroke-dasharray: 422, 0;
   transition: all 0.35s linear;
@@ -175,11 +184,43 @@ body {
   align-items: center;
 }
 
-.copyright-area{
+.resultcard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  /* padding-top: 2rem; */
+  padding-left: 2rem;
+}
+
+#ch {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
+#cb {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
+
+.copyright-area {
   position: fixed;
-  bottom: 0; 
+  bottom: 0;
   width: 100%;
-  background: #202020;
+  background: #00010e;
+  /* background: #202020; */
   padding: 10px 0px 10px 0px;
 }
 
@@ -192,4 +233,3 @@ body {
 .copyright-text p a {
   color: #ff1100;
 }
-

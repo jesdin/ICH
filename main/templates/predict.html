@@ -36,7 +36,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark" id="navbar">
+    <nav class="navbar navbar-expand-lg sticky-top" id="navbar">
         <a class="navbar-brand" href="{% url 'home' %}" style="font-family: ui-sans-serif; color: #c5c4c4;">
 
             <img src="{% static "images/logo.png" %}" width="40" height="30" class="d-inline-block align-top" alt="">
@@ -48,15 +48,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{% url 'home' %}">Home</a>
-                <a class="nav-item nav-link" href="{% url 'classify' %}" id="aboutus">Classify</a>
-                <a class="nav-item nav-link" href="{% url 'predict' %}" id="predict">Check Severity</a>
+                <a class="nav-item nav-link active" id="topic-secondary" href="{% url 'home' %}">Home</a>
+                <a class="nav-item nav-link" id="topic-secondary" href="{% url 'classify' %}" id="aboutus">Classify</a>
+                <a class="nav-item nav-link" id="topic" href="{% url 'predict' %}" id="predict">Check Severity</a>
                 <!-- <a class="nav-item nav-link" href="{% url 'predict' %}" id="predict">Predict</a> -->
             </div>
         </div>
     </nav>
     <div class="container-fluid tablerow">
-        <div class="row table-dark rw">
+        <div class="row table-dark rw" style="background-color: #0d1822;">
             <div class="col d-flex flex-column justify-content-center">
                 <div class="row">
                     <div class="col-4" style="font-weight: 700;">
@@ -214,16 +214,23 @@
                 <!-- <div class="display">
                     <p id="res"></p>
                 </div> -->
-                <div class="card text-white bg-danger">
-                <h5 class="card-header">Severity Prediction</h5>
-                <div class="card-body">
-                    <h5 class="card-title">Brain Hemmoraghe Type:</h5>
-                    <h4><p class="card-text" id="res"></p></h4>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                <div class="resultcard">
+                    <div class="card text-white" style="background-color: #00010e;" id="ch">
+                        <h5 class="card-header" style="color: red; border-bottom-color: #f8f9fa;">Severity Prediction
+                        </h5>
+                        <div class="card-body" id="cb">
+                            <h3 class="card-title" style="color: white;">
+                                <p class="card-text" id="sc"></p>
+                            </h3>
+                            <h4>
+                                <p class="card-text" id="res" style="color: white;"></p>
+                            </h4>
+                            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div class="p-3" style="z-index: 3000; bottom: 2rem; right: 1rem; position: fixed; ">
         <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
@@ -332,16 +339,20 @@
 
         if (score >= 13 && score <= 15) {
             // console.log('Minor Brain injury');
-            result = 'Minor Brain injury';
+            result = 'Minor Brain Injury';
 
         } else if (score >= 9 && score <= 12) {
             // console.log('Moderate Brain injury');
-            result = 'Moderate Brain injury';
-        } else {
+            result = 'Moderate Brain Injury';
+        } else if (score >= 3 && score <= 8) {
             // console.log('Severe Brain injury');
-            result = 'Severe Brain injury';
+            result = 'Severe Brain Injury';
+        }
+        else {
+            result = 'Invalid';
         }
 
+        document.getElementById("sc").innerHTML = 'GCS: ' + score;
         document.getElementById("res").innerHTML = result;
 
         // console.log(result);
