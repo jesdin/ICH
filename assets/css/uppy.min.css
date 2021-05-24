@@ -479,7 +479,7 @@
 
 .uppy-size--md .uppy-StatusBar {
     height: 46px;
-    background-color: #0060ff80;
+    background-color: #00010e;
 }
 
 .uppy-StatusBar:before {
@@ -590,7 +590,8 @@
 
 .uppy-StatusBar-statusPrimary {
     font-weight: 500;
-    line-height: 1
+    line-height: 1;
+    color: white;
 }
 
 .uppy-StatusBar-statusSecondary {
@@ -2375,7 +2376,7 @@ svg.UppyIcon.retry {
 .uppy-size--md .uppy-DashboardContent-bar {
     height: 50px;
     padding: 0 15px;
-    background-color: #0060ff80;
+    background-color: #00010e;
 }
 
 .uppy-DashboardContent-title {
