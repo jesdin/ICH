@@ -28,8 +28,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark" id="navbar">
-        <a class="navbar-brand" href="{% url 'home' %}" style="font-family: ui-sans-serif;; color: #c5c4c4;">
+    <nav class="navbar navbar-expand-lg sticky-top" id="navbar ">
+        <a class="navbar-brand" href="{% url 'home' %}" style="font-family: ui-sans-serif; color: #c5c4c4;">
 
             <img src="{% static "images/logo.png" %}" width="35" height="25" class="d-inline-block align-top" alt="">
             Intracranial Brain Hemorrhage Detection
@@ -39,10 +39,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{% url 'home' %}">Home</a>
-                <a class="nav-item nav-link" href="{% url 'classify' %}" id="aboutus">Classify</a>
-                <a class="nav-item nav-link" href="{% url 'predict' %}" id="predict">Check Severity</a>
+            <div class="navbar-nav" style="font-weight: 600;">
+                <a class="nav-item nav-link active" id="topic" href="{% url 'home' %}">Home</a>
+                <a class="nav-item nav-link" id="topic-secondary" href="{% url 'classify' %}" id="aboutus">Classify</a>
+                <a class="nav-item nav-link" id="topic-secondary" href="{% url 'predict' %}" id="predict">Check
+                    Severity</a>
                 <!-- <a class="nav-item nav-link" href="{% url 'predict' %}" id="predict">Predict</a> -->
             </div>
         </div>
@@ -67,7 +68,7 @@
                 </svg>
                 Classify
             </a>
-            <a href="#" class="bttn bttn-1" id="clear">
+            <a href="{% url 'predict' %}" class="bttn bttn-1" id="clear">
                 <svg>
                     <rect x="0" y="0" fill="none" width="100%" height="100%" />
                 </svg>
@@ -105,19 +106,20 @@
                 </div>
             </div>
     </div>
-    <div class="copyright-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 text-center text-lg-lefts">
-                    <div class="copyright-text">
-                        <p>Copyright &copy; 2021, All Right Reserved <a href="{% url 'home' %}">Intracranial Brain
-                                Hemorrhage
-                                Detection</a></p>
+    <footer>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 text-center text-lg-lefts">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2021, All Right Reserved <a href="{% url 'home' %}">Intracranial Brain
+                                    Hemorrhage
+                                    Detection</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </footer>
     </div>
 </body>

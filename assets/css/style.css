@@ -8,11 +8,15 @@
     background: rgb(255, 255, 255);
 }
 
+body {
+    background-color: black;
+    font-family: ui-sans-serif;
+}
 
 /*------Navigation bar------*/
 .navbar {
-    box-shadow: 0px 5px 10px rgb(52, 52, 52);
-    background-color: black !important;
+    box-shadow: 0px 5px 10px rgb(37, 37, 37);
+    background-color: #00010e;
     border-radius: 0rem 0rem 0.5rem 0.5rem;
     height: 6vh;
 }
@@ -20,6 +24,14 @@
 .navbar-collapse {
     display: flex;
     justify-content: flex-end;
+}
+
+#topic {
+    color: white;
+}
+
+#topic-secondary {
+    color: rgba(255, 255, 255, 0.651);
 }
 
 .bgimag {
@@ -47,6 +59,7 @@
     width: 100%;
     height: 60%;
     margin: 1rem;
+    margin-bottom: 4rem;
     color: rgb(255, 255, 255);
     font-weight: 900;
     flex-wrap: nowrap;
@@ -59,6 +72,7 @@
     padding-bottom: 3rem;
     font-style: italic;
     font-family: ui-sans-serif;
+    margin-bottom: 3rem;
 }
 
 
@@ -67,7 +81,7 @@
     margin-left: 1rem;
     cursor: pointer;
     font-size: 16px;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     line-height: 45px;
     max-width: 160px;
     position: relative;
@@ -75,6 +89,7 @@
     text-transform: uppercase;
     width: 100%;
     height: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
 @media (min-width: 600px) {
@@ -170,7 +185,8 @@ ul {
 }
 
 .footer-section {
-    background: #151414;
+    background: #0d1822;
+    /* background: #151414; */
     position: relative;
 }
 
@@ -206,11 +222,12 @@ ul {
     bottom: -15px;
     height: 2px;
     width: 220px;
-    background: #0004ff;
+    background: #ff0000;
+    /* background: #0004ff; */
 }
 
 .names {
-    font-family: cursive;
+    font-family: ui-sans-serif;
     font-size: 1.5srem;
     color: #aaaaaa;
     font-weight: bold;
@@ -232,11 +249,12 @@ ul {
     text-transform: capitalize;
 }
 
-.copyright-area{
+.copyright-area {
     position: fixed;
-    bottom: 0; 
+    bottom: 0;
     width: 100%;
-    background: #202020;
+    background-color: #00010e;
+    /* background: #202020; */
     padding: 10px 0px 10px 0px;
 }
 
