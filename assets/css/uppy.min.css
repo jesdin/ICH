@@ -2059,7 +2059,9 @@ svg.UppyIcon.retry {
 }
 
 .uppy-Dashboard--isInnerWrapVisible .uppy-Dashboard-innerWrap {
-    opacity: 1
+    opacity: 1;
+    height: 300px;
+    background-color: #212529;
 }
 
 .uppy-Dashboard--modal .uppy-Dashboard-inner {

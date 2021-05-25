@@ -16,6 +16,7 @@
 
 body {
   background-color: #000000;
+  font-family: ui-sans-serif;
 }
 
 .btn-result {
@@ -62,9 +63,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
   color: red;
   font-family: ui-sans-serif;
+}
+
+#result-area {
+  background-color: #00010e;
+  padding: 2rem;
 }
 
 #topic {
@@ -90,11 +96,11 @@ body {
   align-items: center;
 }
 
-.copyright-area{
+.copyright-area {
   position: fixed;
-  bottom: 0; 
+  bottom: 0;
   width: 100%;
-  background-color:  #00010e;
+  background-color: #00010e;
   /* background: #202020; */
   padding: 10px 0px 10px 0px;
 }
@@ -108,3 +114,14 @@ body {
 .copyright-text p a {
   color: #ff1100;
 }
+
+#drag-drop-area {
+  background-color: #0d1822;
+  height: 290px;
+  margin: 2rem;
+}
+
+/* .card {
+  background-color: #00010e;
+  padding: 2rem;
+} */
