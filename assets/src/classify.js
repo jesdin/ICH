@@ -97,6 +97,7 @@ $(document).ready(function() {
 
             } else {
               $('#result').text("ICH NOT Detected");
+              $('#result-type').hide();
             }
           }
     
