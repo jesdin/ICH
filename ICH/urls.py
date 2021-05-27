@@ -23,4 +23,5 @@ urlpatterns = [
     path('predict', views.predict, name='predict'),
     path('classify', views.classify, name='classify'),
     path('getimage', views.getimage, name='getimage'),
+    path('paper', views.paper, name='paper'),
 ]

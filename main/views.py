@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse, FileResponse, Http404
 import urllib
 import os
 from main.windowing import _save, get_window
@@ -45,3 +45,9 @@ def getimage(request):
     # delete dcm file
     os.remove(PATH + ".dcm")
     return JsonResponse(data, status=200)
+
+def paper(request):
+    try:
+        return FileResponse(open('assets\\pdf\\Paper.pdf', 'rb'), content_type='application/pdf')
+    except FileNotFoundError:
+        raise Http404()
