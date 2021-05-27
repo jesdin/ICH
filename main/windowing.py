@@ -40,6 +40,7 @@ def bsb_window(dcm):
     bsb_img = np.array([brain_img, subdural_img, soft_img]).transpose(1,2,0)
     return bsb_img
 
+# read dcm and save as png
 def _read(path):
     dcm = pydicom.dcmread(path + ".dcm")
     dcm = dcm.pixel_array 
@@ -47,17 +48,16 @@ def _read(path):
     plt.imsave(path + '.png', dcm, cmap=plt.cm.bone)
     return dcm
 
+# read dcm and return image after windowing
 def get_window(path):
     dcm = pydicom.dcmread(path)
     try:
         image = bsb_window(dcm)
     except:
         image = np.zeros(SHAPE)
-    # image -= image.min((0,1))
-    # image = (255*image).astype(np.uint8)
-    # image = cv2.resize(image, (256, 256))
     return image
 
+# save image and windowed image
 def _save(path, image):
     _read(path)
     plt.imsave(path + '_windowed.png', image)

@@ -1,16 +1,8 @@
 from matplotlib.pyplot import step
 from main.windowing import get_window
 
-# import tensorflow as tf
 import tensorflow.compat.v1 as tf
 import keras.backend as K
-# from tensorflow.keras import Input
-# from tensorflow.keras.applications import Xception
-# from tensorflow.keras.layers import Dense, Dropout, GlobalAveragePooling2D, Bidirectional
-# from tensorflow.keras.models import Model
-# from tensorflow.keras.layers import Lambda
-# from tensorflow.keras.layers import Reshape
-# from tensorflow.keras.layers import GRU
 
 import numpy as np
 
@@ -19,13 +11,7 @@ disable_eager_execution()
 
 K.clear_session()
 
-# config.gpu_options.allow_growth = True
-# config.gpu_options.per_process_gpu_memory_fraction = 0.6
-
-# init_op = tf.initialize_all_variables()
-
 session = tf.Session()
-# session.run(init_op)
 
 K.set_session(session)
 
