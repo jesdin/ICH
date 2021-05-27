@@ -29,9 +29,11 @@
 
 <body>
     <nav class="navbar navbar-expand-lg sticky-top" id="navbar ">
-        <a class="navbar-brand" href="{% url 'home' %}" style="font-family: ui-sans-serif; color: #c5c4c4; display: flex; align-items: center; justify-content: center;">
+        <a class="navbar-brand" href="{% url 'home' %}"
+            style="font-family: ui-sans-serif; color: #c5c4c4; display: flex; align-items: center; justify-content: center;">
 
-            <img src="{% static "images/Logo.jpeg" %}" width="60" height="45" class="d-inline-block align-top" alt="" style="margin-bottom: 0.2rem;">
+            <img src="{% static "images/Logo.jpeg" %}" width="60" height="45" class="d-inline-block align-top" alt=""
+                style="margin-bottom: 0.2rem;">
             Intracranial Brain Hemorrhage Detection
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -74,6 +76,32 @@
                 </svg>
                 Severity
             </a>
+        </div>
+    </div>
+    <div class="paper">
+        <!-- <div class="description">
+            <p>
+                Intracranial Brain Hemorrhage DetectionIntracranial Brain Hemorrhage DetectionIntracranial Brain Hemorrhage DetectionIntracranial Brain Hemorrhage DetectionIntracranial Brain Hemorrhage Detection
+            </p>
+        </div> -->
+        <div class="card" id="pap">
+            <img src="{% static "images/Paper.png" %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">A CNN-RNN based approach for Simultaneous
+                    Detection, Identification and Classification of
+                    Intracranial Hemorrhage</h5>
+                <p class="card-text">International Conference on Communication, Information and Computing
+                    Technology-2021, SPIT</p>
+                <!-- <a href="#" class="btn btn-danger" style="margin: 0 0em 2em;">Go somewhere</a> -->
+                <div class="butt" id="pdfpaper">
+                    <a href="#" class="bttnone bttn-12">
+                        <svg>
+                            <rect x="0" y="0" fill="none" width="100%" height="100%" />
+                        </svg>
+                        Paper
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="credit">
