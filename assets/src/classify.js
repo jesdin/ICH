@@ -96,7 +96,7 @@ $(document).ready(function() {
               console.log(ICHtype, p[i]);
             }
             if(ICHtype.length > 0){
-              $('#result').text("ICH Detected");
+              $('#result').text("Intracranial Brain Hemorrhage Detected");
               $('#result-type').text("Type: " + ICHtype);
 
             } else {

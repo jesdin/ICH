@@ -47,7 +47,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 2rem; */
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
 }
 
 #result {
@@ -81,6 +83,16 @@ body {
   color: rgba(255, 255, 255, 0.651);
 }
 
+.row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .row-footer {
   display: flex;
   align-self: center;
@@ -101,7 +113,6 @@ body {
   bottom: 0;
   width: 100%;
   background-color: #00010e;
-  /* background: #202020; */
   padding: 10px 0px 10px 0px;
 }
 
@@ -120,8 +131,3 @@ body {
   height: 290px;
   margin: 2rem;
 }
-
-/* .card {
-  background-color: #00010e;
-  padding: 2rem;
-} */
